@@ -2,7 +2,7 @@
 // https://docs.expo.dev/get-started/installation/
 
 // Import libraries
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import {
@@ -66,7 +66,7 @@ function Tuto1() {
     // ------------------------------
     return (
         <View style={styles.container}>
-            <Text style={styles.textLarge}> SAE Roue - Tutoriel 1 </Text>
+            <Text style={styles.textLarge}> Expo SDK - Tutoriel 1 </Text>
             <Text style={styles.textLarge}> Secouez le téléphone pour afficher le mode débug. </Text>
             <Text style={styles.textLarge}> Utilisez les boutons en bas pour faire défiler les menus. </Text>
 
@@ -87,14 +87,25 @@ function Tuto2() {
     // Fonction pour déterminer si un nombre est pair
     // function nomDeLaFonction(paramètres) { instructions }
     function estPair(res) {
-        return res % 2 === 0;
+        if (res % 2 === 0) {
+            setCouleur('success');
+        } else {
+            setCouleur('danger');
+        }
     }
+
+    // Essayez de créer une fonction pour rendre le texte rouge si le nombre est négatif
+
+    // Appel de la fonction estPair à chaque fois que la variable count est modifiée
+    useEffect(() => {
+        estPair(count);
+    }, [count]);
 
     // Return UI
     return (
         <View style={styles.container}>
-            <Text style={styles.textLarge}> SAE Roue - Tutoriel 2 </Text>
-            <Text style={styles.textLarge}> Comptage : {count} </Text>
+            <Text style={styles.textLarge}> Expo SDK - Tutoriel 2 </Text>
+            <Text style={styles.textLarge} status={couleur}> Comptage : {count} </Text>
             <Button style={styles.button} status='success' onPress={() => setCount(count + 1)}> Ajouter 1 </Button>
             <Button style={styles.button} status='danger' onPress={() => setCount(count - 1)}> Retirer 1 </Button>
             <Button style={styles.button} onPress={() => setCount(0)}> Remise à zéro </Button>
@@ -141,7 +152,7 @@ function Tuto3() {
     // Return UI
     return (
         <View style={styles.container}>
-            <Text style={styles.textLarge}> SAE Roue - Tutoriel 3 </Text>
+            <Text style={styles.textLarge}> Expo SDK - Tutoriel 3 </Text>
             <Text style={styles.textLarge}> Température : {temperature}°C </Text>
             <Text style={styles.textLarge}> Météo : {weather} </Text>
             <Button style={styles.button} onPress={() => getWeather()}> Récupérer la Météo </Button>
@@ -171,6 +182,7 @@ const styles = StyleSheet.create({
 // Création de la pile de navigation
 const { Navigator, Screen } = createBottomTabNavigator();
 
+// Barre de navigation inférieure
 const BottomTabBar = ({ navigation, state }) => (
     <BottomNavigation
         style={{ marginBottom: 32 }}
@@ -181,7 +193,8 @@ const BottomTabBar = ({ navigation, state }) => (
             <BottomNavigationTab icon={Weather} title='Tutoriel 3'/>
     </BottomNavigation>
 );
-  
+
+// Création du navigateur à onglets
 const TabNavigator = () => (
     <Navigator tabBar={props => <BottomTabBar {...props} />}>
         <Screen name='Tutoriel 1' component={Tuto1}/>

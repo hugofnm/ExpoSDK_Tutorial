@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "SAERoue",
-    "slug": "saeroue",
+    "name": "ExpoSDK_Tutorial",
+    "slug": "expotuto",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "scheme": "saeroue",
+    "scheme": "expotuto",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     }
